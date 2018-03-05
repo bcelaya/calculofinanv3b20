@@ -1,3 +1,7 @@
+//
+// SCRIPT PARA EL CALCULO DE LA FINANCIACION
+//
+  
 function calculofinanv3b20(){
 // aquí empezamos el programa para calcular la financiación a 12 meses
    
@@ -37,7 +41,7 @@ var precioenentero = parseInt(arrayprecios[i]) * 12;
 if (( precioenentero >= 600 ) && (precioenentero <= 6000)) {
   
 
-nodosprecios[i].innerHTML = nodosprecios[i].innerHTML + '<br><span class="financiacion2">Financiación a 12 meses: ' + arrayprecios[i] + '€ al mes (sin intereses)</div>'
+nodosprecios[i].innerHTML = nodosprecios[i].innerHTML + '<br><span class="financiacion2">Financiación a 12 meses: ' + arrayprecios[i] + '€ al mes <br>(sin intereses)</div>'
    
   }
  else{
@@ -45,9 +49,8 @@ nodosprecios[i].innerHTML = nodosprecios[i].innerHTML + '<br><span class="financ
 nodosprecios[i].innerHTML = nodosprecios[i].innerHTML + '<br><span class="financiacion3">Financiación a 12 meses: ' + arrayprecios[i] + '€ al mes <br>(3% intereses)</div>'
                             }
  else{
- nodosprecios[i].innerHTML = nodosprecios[i].innerHTML + '<br><span class="sincompetencia">Precio Intermaquinas.online <br>Precio sin competencia!</div>';
+ nodosprecios[i].innerHTML = nodosprecios[i].innerHTML + '<br><span class="sincompetencia">Precio Intermaquinas.online <br>sin competencia!</div>';
 
  }
     }
  }
-}
