@@ -1,0 +1,159 @@
+<style>
+div#dfclassic {
+    width: 100% !important;
+    left: 0px !important;
+}
+#header .header-msg {
+    max-height: 44px;
+    border-bottom: 1px solid #e3e3e3;
+    margin-bottom: 24px;
+}
+
+.header-msg {
+    background: #bed639;
+}
+
+.widget-1.widget-first.widget.ajaxsearchprowidget-3.AjaxSearchProWidget {
+    width: 100%;
+}
+
+img.attachment-shop_catalog.size-shop_catalog.wp-post-image {
+    border: 3px solid #bed639;
+    border-radius: 10px;
+}
+
+
+.products-loop li .products-entry {
+    border: none !important;
+}
+
+#header .header-msg .sidebar-top .widget {
+    float: none !important;
+}
+img.fotoscategoriashome {
+    border: 3px solid #7f633d;
+    border-radius: 18px;
+    margin-top: 12px;
+}
+header#header {
+    background-size: cover !important;
+    background-repeat: no-repeat;
+}
+
+.genergy::after{
+    color:red;
+    font-size:1.2rem;
+    font-weight:bolder;
+    content:"ENVIO Y PUESTA EN MARCHA GRATIS";
+}
+
+.pac2::after{
+    color:blue;
+    font-size:1.2rem;
+    font-weight:bolder;
+    content:"PRECIOS ESPECIALES A CONSULTAR";
+}
+</style>
+<script>
+function calculofinanv3b20(){
+// aquí empezamos el programa para calcular la financiación a 12 meses
+   
+var nodosprecios = document.getElementsByClassName("price");
+   
+var arrayprecios = new Array();
+   
+// ahora aquí lo que vamos a hacer es recorrer el array
+   
+for (i = 0; i < nodosprecios.length; i ++){
+var prtext = nodosprecios[i].textContent;
+  
+if (prtext.includes("–")) 
+{
+prtext = prtext.split("–")[1];
+}
+   
+var precio = prtext.replace(/\s/g,'');
+   
+var preci = precio.replace('.', '');
+   
+precio = preci.replace(',','.');
+   
+precio = parseFloat(precio);
+ 
+if (precio > 6000){ precio = precio * 1.03;}
+if ((precio > 600) && (precio <= 6000) ){ precio = precio *1.0120;}
+   
+mensualidad = precio/12;
+   
+mensualidad = mensualidad.toFixed(2);
+   
+arrayprecios[i] = mensualidad;
+   
+var precioenentero = parseInt(arrayprecios[i]) * 12;
+   
+if (( precioenentero >= 600 ) && (precioenentero <= 6000)) {
+  
+
+nodosprecios[i].innerHTML = nodosprecios[i].innerHTML + '<br><span class="financiacion2">Financiación a 12 meses: ' + arrayprecios[i] + '€ al mes <br>(sin intereses)</div>'
+   
+  }
+ else{
+ if ((precioenentero > 6000)){
+nodosprecios[i].innerHTML = nodosprecios[i].innerHTML + '<br><span class="financiacion3">Financiación a 12 meses: ' + arrayprecios[i] + '€ al mes <br>(3% intereses)</div>'
+                            }
+ else{
+ nodosprecios[i].innerHTML = nodosprecios[i].innerHTML + '<br><span class="sincompetencia">Precio Intermaquinas.online <br>sin competencia!</div>';
+
+ }
+    }
+ }
+}
+
+function sinprecio(){
+var prueba = document.getElementsByClassName("woo-border-box transit-all");
+
+for (i=0;i<prueba.length;i++){
+
+        // variable con el html en texto para comprobar si esta o no la etiqueta precio
+
+        var pruebatexto = prueba[i].outerHTML;
+
+        // misma variable pero con el HTML para despues poder usar el insertAdjacentHTML despues
+
+        var pruebahtml = prueba[i].innerHTML;
+
+        var resultado = pruebatexto.indexOf('<span class="price">');
+
+        // Si el producto no tiene la etiqueta de precio hacemos lo siguiente
+
+        if (resultado==-1){
+
+            // buscamos la etiqueta <div class="sku"> y guardarmos su posicion
+
+            var dondestasku = pruebatexto.indexOf('<div class="sku">');
+
+            // ahora vamos a partir el html en dos para poder insertar luego la modificación antes d la etiqueta sku
+
+            var primeraparte = pruebatexto.slice(0,dondestasku);
+
+            var anyadido = '<span class="price"><span class="woocommerce-Price-amount amount">CONSULTAR PRECIO<span class="woocommerce-Price-currencySymbol"></span></span><br><span class="sincompetencia">Llamenos para consultar nuestros precios<br>(ofertas personalizadas)</span></span>';
+
+            var segundaparte = pruebatexto.slice(dondestasku);
+
+            // unimos las partes para poder despues insertarlo todo
+
+            var htmlfinal = primeraparte+anyadido+segundaparte;
+
+            // pegamos el html final en el elemento correspondiente
+
+            prueba[i].innerHTML=htmlfinal;
+
+            } 
+        }
+}
+
+if (document.addEventListener){
+        document.addEventListener("DOMContentLoaded", calculofinanv3b20, false);  
+document.addEventListener("DOMContentLoaded", sinprecio, false);
+    }
+</script>
